@@ -9,14 +9,9 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Docker Check') {
             steps {
-                sh 'docker compose build'
-            }
-        }
-
-        stage('List Images') {
-            steps {
+                sh 'docker --version'
                 sh 'docker images'
             }
         }
