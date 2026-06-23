@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        AWS_REGION='ap-south-1'
+        AWS_REGION = 'ap-south-1'
     }
 
     stages {
@@ -10,6 +10,16 @@ pipeline {
         stage('Checkout') {
             steps {
                 checkout scm
+            }
+        }
+
+        stage('ECR Login') {
+            steps {
+                sh '''
+                aws ecr get-login-password --region $AWS_REGION | \
+                docker login --username AWS --password-stdin \
+                429965676677.dkr.ecr.ap-south-1.amazonaws.com
+                '''
             }
         }
 
