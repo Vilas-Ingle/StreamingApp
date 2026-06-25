@@ -1,0 +1,16 @@
+namespace: streamingapp
+
+replicaCount: 2
+
+jwtSecret: changeme
+
+mongo:
+  image: mongo:6
+  uri: mongodb://mongo:27017/streamingapp
+
+images:
+  auth: 429965676677.dkr.ecr.ap-south-1.amazonaws.com/streamingapp-auth:latest
+  streaming: 429965676677.dkr.ecr.ap-south-1.amazonaws.com/streamingapp-streaming:latest
+  admin: 429965676677.dkr.ecr.ap-south-1.amazonaws.com/streamingapp-admin:latest
+  chat: 429965676677.dkr.ecr.ap-south-1.amazonaws.com/streamingapp-chat:latest
+  frontend: 429965676677.dkr.ecr.ap-south-1.amazonaws.com/streamingapp-frontend:latest

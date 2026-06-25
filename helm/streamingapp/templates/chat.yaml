@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chat
+  namespace: {{ .Values.namespace }}
+
+spec:
+  replicas: {{ .Values.replicaCount }}
+
+  selector:
+    matchLabels:
+      app: chat
+
+  template:
+    metadata:
+      labels:
+        app: chat
+
+    spec:
+      containers:
+      - name: chat
+
+        image: {{ .Values.images.chat }}
+
+        ports:
+        - containerPort: 3004
+
+        env:
+        - name: PORT
+          value: "3004"
+
+        - name: MONGO_URI
+          value: "{{ .Values.mongo.uri }}"
+
+        - name: JWT_SECRET
+          value: "{{ .Values.jwtSecret }}"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: chat-service
+  namespace: {{ .Values.namespace }}
+
+spec:
+  selector:
+    app: chat
+
+  ports:
+  - port: 3004
+    targetPort: 3004
