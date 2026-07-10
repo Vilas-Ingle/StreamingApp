@@ -2,6 +2,38 @@
 
 Stream premium video content, host live watch parties, and manage your catalogue with a modern microservice architecture. The platform now ships with a production-ready admin portal, real-time chat, S3-backed adaptive streaming, and a redesigned cinematic frontend experience.
 
+## DevOps Project Overview
+
+This project demonstrates the end-to-end deployment of a MERN Stack microservices application on AWS using modern DevOps practices.
+
+The project covers the complete software delivery lifecycle, including source code management, containerization, continuous integration, container registry management, Kubernetes orchestration, Helm-based deployment, and cloud monitoring.
+
+### Key Highlights
+
+* Dockerized MERN Stack microservices
+* CI pipeline using Jenkins
+* GitHub Webhook integration
+* Docker image storage in Amazon ECR
+* Kubernetes deployment on Amazon EKS
+* Helm chart based application deployment
+* Amazon CloudWatch monitoring
+* Amazon SNS email notifications
+* Project documentation following industry practices
+
+## Documentation
+
+Detailed project documentation is available in the `docs/` directory.
+
+| Document            | Description                                           |
+| ------------------- | ----------------------------------------------------- |
+| `architecture.md`   | Solution architecture and AWS infrastructure          |
+| `deployment.md`     | Docker, ECR, EKS and Helm deployment steps            |
+| `cicd.md`           | Jenkins CI/CD pipeline and GitHub Webhook integration |
+| `troubleshoot.md`   | Common issues encountered and their resolutions       |
+| `project-report.md` | Project summary and implementation details            |
+
+
+
 ## Architecture
 
 | Service | Port | Description |
