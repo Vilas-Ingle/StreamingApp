@@ -8,6 +8,24 @@ This project demonstrates the end-to-end deployment of a MERN Stack microservice
 
 The project covers the complete software delivery lifecycle, including source code management, containerization, continuous integration, container registry management, Kubernetes orchestration, Helm-based deployment, and cloud monitoring.
 
+## Technology Stack
+
+| Category | Technology |
+|----------|------------|
+| Cloud Platform | AWS |
+| Frontend | React.js |
+| Backend | Node.js, Express.js |
+| Database | MongoDB |
+| Containerization | Docker, Docker Compose |
+| CI/CD | Jenkins |
+| Source Control | Git, GitHub |
+| Container Registry | Amazon Elastic Container Registry (ECR) |
+| Orchestration | Kubernetes (Amazon EKS) |
+| Package Management | Helm |
+| Monitoring | Amazon CloudWatch |
+| Notifications | Amazon SNS |
+| Operating System | Ubuntu Linux |
+
 ### Key Highlights
 
 * Dockerized MERN Stack microservices
@@ -19,6 +37,49 @@ The project covers the complete software delivery lifecycle, including source co
 * Amazon CloudWatch monitoring
 * Amazon SNS email notifications
 * Project documentation following industry practices
+
+## Repository Structure
+
+```
+StreamingApp/
+├── backend/              # Microservices
+├── frontend/             # React Application
+├── docs/                 # Project Documentation
+├── helm/                 # Helm Charts
+├── k8s/                  # Kubernetes Manifests
+├── Jenkinsfile           # CI Pipeline
+├── docker-compose.yml    # Local Multi-container Deployment
+├── README.md
+└── LICENSE
+```
+## CI/CD Workflow
+
+The project follows a complete CI/CD workflow using Jenkins and AWS services.
+
+```
+Developer
+      │
+      ▼
+ Git Push (GitHub)
+      │
+      ▼
+ GitHub Webhook
+      │
+      ▼
+ Jenkins Pipeline
+      │
+      ▼
+ Docker Image Build
+      │
+      ▼
+ Amazon ECR
+      │
+      ▼
+ Amazon EKS (Kubernetes)
+      │
+      ▼
+ Application Available via Load Balancer
+```
 
 ## Documentation
 

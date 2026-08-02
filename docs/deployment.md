@@ -6,6 +6,56 @@ This document describes the deployment process of the StreamingApp application o
 
 ---
 
+# Deployment Architecture
+
+```
+Developer
+      │
+      ▼
+GitHub Repository
+      │
+      ▼
+GitHub Webhook
+      │
+      ▼
+Jenkins Pipeline
+      │
+      ▼
+Docker Image Build
+      │
+      ▼
+Amazon ECR
+      │
+      ▼
+Helm
+      │
+      ▼
+Amazon EKS
+      │
+      ▼
+Application Load Balancer
+      │
+      ▼
+Users
+```
+---
+
+# AWS Infrastructure
+
+| Service | Purpose |
+|----------|---------|
+| Amazon EC2 | Jenkins Server |
+| Amazon ECR | Docker Image Registry |
+| Amazon EKS | Kubernetes Cluster |
+| Application Load Balancer | Frontend Access |
+| Amazon CloudWatch | Monitoring |
+| Amazon SNS | Email Notifications |
+| IAM | Access Management |
+| Security Groups | Network Security |
+| VPC | Networking |
+
+---
+
 # Prerequisites
 
 The following tools and services must be available before deployment:
@@ -159,25 +209,28 @@ kubectl get deployments
 ``` 
 
 check Helm Releases:
+
 ```bash
 helm list -A
+```
 
 Verify all Kubernetes resources:
 
 ```bash
 kubectl get all -n streamingapp
-``````
+```
 
 ---
 
 ## 9. Monitoring
 
-Amazon CloudWatch monitors the infrastructure.
+Amazon CloudWatch is used to continuously monitor infrastructure health.
 
-Configured alarm:
+Configured alarms include:
 
-* EC2 CPU Utilization
-* Threshold: 70%
+- EC2 CPU Utilization
+- Kubernetes Node Health (future enhancement)
+- Jenkins Server Health (future enhancement)
 
 Notifications are delivered through Amazon SNS email subscriptions.
 
@@ -185,21 +238,21 @@ Notifications are delivered through Amazon SNS email subscriptions.
 
 ## 10. Cleanup
 
-Delete Helm release:
+Remove deployed resources to avoid unnecessary AWS charges.
 
 ```bash
 helm uninstall streamingapp
 ```
 
-Delete EKS cluster:
-
 ```bash
-eksctl delete cluster --name streamingapp-cluster --region ap-south-1
+eksctl delete cluster \
+--name streamingapp-cluster \
+--region ap-south-1
 ```
 
 ---
 
-# Deployment Summary
+# End-to-End Deployment Pipeline
 
 The deployment pipeline performs the following sequence:
 
@@ -211,4 +264,16 @@ The deployment pipeline performs the following sequence:
 6. Kubernetes manages the application.
 7. CloudWatch monitors the infrastructure.
 8. Amazon SNS sends alert notifications.
+---
 
+# Deployment Verification Checklist
+
+- [x] Docker images built successfully
+- [x] Images pushed to Amazon ECR
+- [x] Jenkins pipeline completed successfully
+- [x] Amazon EKS cluster created
+- [x] Kubernetes pods running
+- [x] Helm deployment successful
+- [x] Frontend accessible through Load Balancer
+- [x] CloudWatch alarm configured
+- [x] SNS notification verified

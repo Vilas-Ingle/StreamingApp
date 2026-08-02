@@ -105,14 +105,14 @@ Helm packages the Kubernetes manifests into reusable charts, simplifying deploym
 
 ## Kubernetes
 
-The cluster manages:
+The Kubernetes cluster manages the complete lifecycle of all StreamingApp microservices, including:
 
-* Deployments
-* Services
-* ReplicaSets
-* Pods
-
-for all StreamingApp microservices.
+- Deployments
+- ReplicaSets
+- Pods
+- Services
+- Self-healing of failed containers
+- Rolling updates during deployments
 
 ---
 
